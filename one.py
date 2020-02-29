@@ -30,9 +30,10 @@ b2_new = []
 episodes = 10
 for i_episode in range(episodes):
     W1 = np.random.randn(nhiddens,ninputs) * pvariance # first layer
-    W1_all.append(np.reshape(W1, (1, nhiddens*ninputs)))
+    W1_all.append(W1)
+    print(W1_all)
     W2 = np.random.randn(noutputs, nhiddens) * pvariance # second layer
-    W2_all.append(np.reshape(W2, (1, noutputs*nhiddens)))
+    W2_all.append(W2)
     b1 = np.zeros(shape=(nhiddens, 1)) # bias first layer
     b1_all.append(b1)
     b2 = np.zeros(shape=(noutputs, 1)) # bias second layer
@@ -61,46 +62,32 @@ for i_episode in range(episodes):
         a = a+reward
     all_a.append(a)
     a = 0
-all_a_copy = all_a
-all_a = np.sort(all_a)
-W1_all = np.reshape(W1_all, (nhiddens, ninputs, episodes))
-W2_all = np.reshape(W2_all, (noutputs, nhiddens, episodes))
-b1_all = np.reshape(b1_all, (nhiddens, 1, episodes))
-b2_all = np.reshape(b2_all, (noutputs, 1, episodes))
-
+# all_a = np.reshape(np.array(all_a), episodes)
+# all_a_copy = all_a
+# all_a = np.sort(all_a)
+print(all_a)
 for i in range (int(episodes/2)):
-    new_all_a.append(all_a[all_a.size-i-1])
-    # count = all_a.index(all_a[all_a.size-i-1],[all_a.size+episodes/2-1, [all_a.size-1]])
-    count = np.where(all_a[all_a.size-i-1] == all_a)
-    # print("W1 = ", W1, "with size", W1.shape, "b", b1.shape)
-    W1_new.append(W1_all[:,:,count])
-    W2_new.append(W2_all[:,:,count])
-    b1_new.append(b1_all[:,:,count])
-    b2_new.append(b2_all[:,:,count])
-for i in range (int(episodes/2), episodes):
-    new_all_a.append(all_a[all_a.size-i-1])
-    count = np.where(all_a[all_a.size-i-1] == all_a)
-    W1_new.append(W1_all[:,:,count]+ppvariance)
-    W2_new.append(W2_all[:,:,count]+ppvariance)
-    b1_new.append(b1_all[:,:,count]+ppvariance)
-    b2_new.append(b2_all[:,:,count]+ppvariance)
-W1_new = np.reshape(W1_new, (nhiddens, ninputs, episodes,0))
-W2_new = np.reshape(W2_new, (noutputs, nhiddens, episodes,0))
-b1_new = np.reshape(b1_new, (nhiddens, 1, episodes,0))
-b2_new = np.reshape(b2_new, (noutputs, 1, episodes,0))
+    # new_all = np.array(new_all_a.append(all_a[all_a.size-i-1]))
+    # count = np.where(all_a[all_a.size-i-1] == all_a)
+    count = np.argmax(all_a)
+    # print(type())
+    all_a[count] = int(min(all_a))
+    W1_new.append(W1_all[count])
+    W2_new.append(W2_all[count])
+    b1_new.append(b1_all[count])
+    b2_new.append(b2_all[count])
+for i in range (int(episodes/2)):
+    W1_new.append(W1_all[i]+ppvariance)
+    W2_new.append(W2_all[i]+ppvariance)
+    b1_new.append(b1_all[i]+ppvariance)
+    b2_new.append(b2_all[i]+ppvariance)
+W1_new = np.reshape(W1_new, (nhiddens, ninputs, episodes))
+W2_new = np.reshape(W2_new, (noutputs, nhiddens, episodes))
+b1_new = np.reshape(b1_new, (nhiddens, 1, episodes))
+b2_new = np.reshape(b2_new, (noutputs, 1, episodes))
 print ("new W1", W1_new.shape, "new W2", W2_new.shape, "new b1", b1_new.shape, "new b2", b2_new.shape)
+print(W1_new)
+print(W2_new)
+print(b1_new)
+print(b2_new)
 env.close()
-
-# env = gym.make('CartPole-v0')
-# for i_episode in range(10):
-#     observation = env.reset()
-#     for t in range(200):
-#         env.render()
-#         print(observation)
-#         # action = env.action_space.sample()
-#         observation, reward, done, info = env.step(env.action_space.sample())
-#         print("observation", observation, "reward", reward, "done", done, "info", info)
-#         if done:
-#             print("Episode finished after {} timesteps".format(t+1))
-#             break
-# env.close()
