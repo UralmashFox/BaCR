@@ -1,6 +1,6 @@
 # Report
 ## Task 1
-Firstly I tried to run the very first code with CartPole-v0 (1a code) and I got following result:
+Firstly I tried to run the very first code with CartPole-v0 (script 1a) and I got following result:
 
 ![](https://i.imgur.com/nZ9QPEL.png)
 
@@ -8,7 +8,7 @@ Also I tried to run other environments, for example Atari-games:
 
 ![](https://i.imgur.com/0jiewER.png)
 
-Then I pasted the second part of the first tast and inspected the minimal and maximum values of
+Then I pasted the second part of the first task (script 1b) and inspected the minimal and maximum values of
 each observation and action elements: 
 
 ![](https://i.imgur.com/MYCKPX8.png)
