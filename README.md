@@ -21,7 +21,7 @@ Firstly I ran simple random iterations (script new2a.py) and got following resul
 
 obviously, model was falling every time.
 ### part - b
-Then I write evolutional part. Model became more stable (what can be detected in every running), but modell still be falling.
+Then I write evolutional part (script new2b.py). Model became more stable (what can be detected in every running), but modell still be falling.
 
 ## Task 3
 - I installed the libraries net*.so net*.dll in *bin* directory by:
