@@ -25,6 +25,8 @@ Then I write evolutional part (script new2b.py). Model became more stable (what 
 
 ![](https://i.imgur.com/WiuP3rp.png)
 
+When I increased variance for recomputing weights and biases up to 0.5, Cart became unstable after 5-th episode. But somehow sometimes it could balance. At the same time I increased numder of hidden neurons up to 15 and after 8-th iteration CartPole bacame more stable even after 5-th iretarion, but it got about 10 populations. Seems like good random numbers.
+
 ## Task 3
 - I installed the libraries net*.so net*.dll in *bin* directory by:
 ```
