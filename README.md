@@ -21,7 +21,9 @@ Firstly I ran simple random iterations (script new2a.py) and got following resul
 
 obviously, model was falling every time.
 ### part - b
-Then I write evolutional part (script new2b.py). Model became more stable (what can be detected in every running), but modell still be falling.
+Then I write evolutional part (script new2b.py). Model became more stable (what can be detected in every running). And after a small ammount of iteration all the awards became maximum and pendulum became stable! BUT! As I said it happens in each running, but when I ran it firstly - the pendulum was falling. Now it's OK.
+
+![](https://i.imgur.com/WiuP3rp.png)
 
 ## Task 3
 - I installed the libraries net*.so net*.dll in *bin* directory by:
