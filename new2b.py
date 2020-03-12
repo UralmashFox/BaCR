@@ -44,7 +44,7 @@ for epoch in range(epoches):
     awards = np.zeros(episodes)
     print ('epoch', epoch)
     for episode in range(episodes):
-        env.reset()
+        observation = env.reset()
         if epoch==0:
             W1 = np.random.randn(nhiddens,ninputs) * pvariance
             # first layer
@@ -68,7 +68,7 @@ for epoch in range(epoches):
             b2 = b2_all[episode]
         for step in range(steps):
             env.render()
-            observation, reward, done, info = env.step(env.action_space.sample())
+            # observation, reward, done, info = env.step(env.action_space.sample())
             # convert the observation array into a matrix with 1 column and ninputs rows
             observation.resize(ninputs,1)
             # compute the netinput of the first layer of neurons
@@ -80,11 +80,13 @@ for epoch in range(epoches):
             # compute the activation of the second layer of neurons with the tanh function
             A2 = np.tanh(Z2)
             # if actions are discrete we select the action corresponding to the most activated unit
-            if (isinstance(env.action_space, gym.spaces.box.Box)):
-                action = A2
-            else:
-                action = np.argmax(A2)
+            # if (isinstance(env.action_space, gym.spaces.box.Box)):
+            #     action = 
+            # else:
+            action = np.argmax(A2)
+            observation, reward, done, info = env.step(action)
             awards[episode] += reward
+    print(awards)
     n = 0
     while n<(len(awards)/2):
         max_award = np.argmax(awards)
@@ -104,5 +106,6 @@ for epoch in range(epoches):
     W2_all = W2_all_copy
     b1_all = b1_all_copy
     b2_all = b2_all_copy
+    # print(W1_all[0])
     # print(W1_all[5])
 env.close()
