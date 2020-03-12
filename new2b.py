@@ -5,7 +5,7 @@ env = gym.make('CartPole-v0')
 steps = 200
 episodes = 10
 epoches = 100
-pvariance = 1
+pvariance = 0.1
 # variance of initial parameters
 ppvariance = 0.03
 # variance of perturbations
