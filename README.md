@@ -6,7 +6,7 @@
 
 - [x] were evolved halfcheetah and hopper with evolutionary algorythm ([hopper](https://youtu.be/DwQCBcstS-s) jumping and [hafcheetah](https://youtu.be/cbRsPp8j0A0) running mostly in a good manner) and reinforcement (hopper didn't change it position and halfcheetah was falling in the very first steps). 
 
-Seems like it happens because in evolutionary algorythm there are some random values, from hich the best are taken and training again. At the same time reinforcement lesrning was developed for step-by-step (gradient) learning. If to take into account all penalties which are in the script (connected to enegry consumption, touching be leg another leg), it means that finding out the best solution takes much more time.
+Seems like it happens because in evolutionary algorythm there are some random values, from hich the best are taken and training again. At the same time reinforcement learning was developed for step-by-step (gradient) learning. If to take into account all penalties which are in the script (connected to energy consumption, touching be leg another leg), it means that finding out the best solution takes much more time.
 
 # Task 5
 
