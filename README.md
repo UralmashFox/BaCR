@@ -39,6 +39,7 @@ Seeds 30, 45 and 50 were worst and trained again in a feedforward way. The resul
 | 30       | model in spiral manner goes to goal -> don't move around goal| 
 | 45       | goes from wall to goal and again to wall multiple times -> don't move around cylinder    | 
 | 50       | goes either to wall (mostly) or goal and don't move in the end | 
+
 So, there are some improvements in retraining, but, as I understood, if experiment with chosen seed is bad, no confidence that it will be better with another architecture.
 
 ![](https://i.imgur.com/Bxf6JFp.png)
