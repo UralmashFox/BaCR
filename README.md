@@ -1,64 +1,47 @@
-# Report
-## Task 1
-Firstly I tried to run the very first code with CartPole-v0 (script 1a) and I got following result:
+# Task 4
 
-![](https://i.imgur.com/nZ9QPEL.png)
+- [x] meet with command showrobot.py (shows available model which can be rendered). Example of result with hopper model:
 
-Also I tried to run other environments, for example Atari-games:
+![x](https://i.imgur.com/6fRL880.png)
 
-![](https://i.imgur.com/0jiewER.png)
+- [x] were evolved halfcheetah and hopper with evolutionary algorythm ([hopper](https://youtu.be/DwQCBcstS-s) jumping and [hafcheetah](https://youtu.be/cbRsPp8j0A0) running mostly in a good manner) and reinforcement (hopper didn't change it position and halfcheetah was falling in the very first steps). 
 
-Then I pasted the second part of the first task (script 1b) and inspected the minimal and maximum values of
-each observation and action elements: 
+Seems like it happens because in evolutionary algorythm there are some random values, from hich the best are taken and training again. At the same time reinforcement lesrning was developed for step-by-step (gradient) learning. If to take into account all penalties which are in the script (connected to enegry consumption, touching be leg another leg), it means that finding out the best solution takes much more time.
 
-![](https://i.imgur.com/MYCKPX8.png)
+# Task 5
 
-## Task 2
-### part - a
-Firstly I ran simple random iterations (script new2a.py) and got following results:
+- [x] was created folder with all necessary files (you can see it in my [git](https://github.com/UralmashFox/BaCR) in branch 4_5_6). URDF-model and other files were studied. All packsge was compiled.
+- [x] was created .ini file with policy in the *evorobotpy* folder.
+- [x] the balance-bot was evaluted and teached by updated *evorobotpy/bin/es.py* file. Here is a photo of learning process:
 
-![](https://i.imgur.com/rEdoVcx.png)
+![](https://i.imgur.com/okBv30z.png)
 
-obviously, model was falling every time.
-### part - b
-Then I write evolutional part (script new2b.py). Model became more stable (what can be detected in every running). And after a small ammount of iteration all the awards became maximum and pendulum became stable! BUT! As I said it happens in each running, but when I ran it firstly - the pendulum was falling. Now it's OK.
+# Task 6
 
-![](https://i.imgur.com/WiuP3rp.png)
+- [x] 10 replications of the experiment from the evorobotpy/xdiscrim folder were ran by using {5, 11, 15, 20, 25, 30, 35, 40, 45, 50} seeds.
+- [x] the best results were:
 
-When I increased variance for recomputing weights and biases up to 0.5, Cart became unstable after 5-th episode. But somehow sometimes it could balance. At the same time I increased numder of hidden neurons up to 15 and after 8-th iteration CartPole bacame more stable even after 5-th iretarion, but it got about 10 populations. Seems like good random numbers.
 
-## Task 3
-- I installed the libraries net*.so net*.dll in *bin* directory by:
-```
-`python3 setupevonet.py build_ext --inplace
-cp net*.so ../bin # or cp net*.dll ../bin`
-```
-- I studied the structure of creation network policy by:
-```
-bin/testnet.py
-```
-- I met with parameters of network by:
-```
-bin/es.py
-```
-- I studied an *acrobat* by:
-```
-python3 ../bin/es.py -f acrobot.ini -s 11
-```
-were used a lot of seeds such as 1, 10, 11, 22, 77 and so on. Finally I got results by following commands for visualazing model:
-```
-python3 ../bin/es.py -f acrobot.ini -t bestgS11.npy
-```
-and visualizing results:
-```
-python3 ../bin/plotstat.py
-python3 ../bin/plotave.py
-```
-Results:
+| # Seed   | Results  |
+| -------- | -------- |
+| 5        | robot find goal -> stop near -> don't move (vibrating)    |
+| 11       | touches nearest wall -> move left and down -> find goal -> circle around     |
+| 15       | to observes center of field -> circling around goal in defferent ways     |
+| 20       | spiral observing of centre field from wall to wall -> often not move around goal after finding     |
+| 25       | observing field in triangular manner, not move around goal    |
+| 35       |  weak attraction by goal     |
+| 40       | go to goal mostly only if is goal near walls     |
 
-![](https://i.imgur.com/2buvL1v.png)
+Seeds 30, 45 and 50 were worst and trained again in a feedforward way. The results after retraining were following:
 
-So, I can see that actually there are not big differences, but with seed = 77 there is a bigger variance.
-Moreover, I tried to tune in *acrobot.ini* some parameters as **ntrials** (gave more steps for visualization), **maxsteps**, **stepsize**, **sampleSize** (let to correct overfitting).
-Also I tried to run other environment such as *humanoid*, *hopper* and so on, but they takes a lot of time to training (5 mins for 1% done)
+| # Seed   | Results  |
+| -------- | -------- |
+| 30       | model in spiral manner goes to goal -> don't move around goal| 
+| 45       | goes from wall to goal and again to wall multiple times -> don't move around cylinder    | 
+| 50       | goes either to wall (mostly) or goal and don't move in the end | 
+So, there are some improvements in retraining, but, as I understood, if experiment with chosen seed is bad, no confidence that it will be better with another architecture.
+
+![](https://i.imgur.com/Bxf6JFp.png)
+
+
 
